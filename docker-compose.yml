@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # 1. Base de Datos (MongoDB)
+  mongodb:
+    image: mongo:latest
+    container_name: ztrack_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ztrack-network
+
+  # 2. Backend (FastAPI)
+  backend:
+    build: ./backend
+    container_name: ztrack_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+      - DB_NAME=ztrack_db
+    networks:
+      - ztrack-network
+
+  # 3. Frontend (React + Vite)
+  frontend:
+    build: ./frontend
+    container_name: ztrack_frontend
+    ports:
+      - "3000:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - ztrack-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  ztrack-network:
+    driver: bridge
