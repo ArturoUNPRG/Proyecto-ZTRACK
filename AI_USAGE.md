@@ -1,30 +1,27 @@
-
 # Informe de Uso de IA - Proyecto ZTRACK
 
-[cite_start]Este informe detalla el uso de herramientas de Inteligencia Artificial (IA) asistida durante el desarrollo de la prueba técnica para **ZGROUP**[cite: 13, 47].
+Este informe detalla cómo utilicé herramientas de Inteligencia Artificial para potenciar el desarrollo del proyecto ZTRACK, manteniendo siempre el control sobre la arquitectura y la lógica de negocio.
 
-## [cite_start]1. Áreas donde se utilizó IA [cite: 48]
+## 1. Herramientas Utilizadas y Roles
+Para este proyecto, integré un flujo de trabajo asistido por IA para optimizar diferentes capas del desarrollo:
+* **Gemini:** Utilizado como asistente principal para la generación de lógica en el backend y resolución de dudas sobre la integración de FastAPI con MongoDB.
+* **Claude:** Empleado para la refactorización de código, asegurando que la estructura fuera limpia, legible y siguiera las mejores prácticas de programación.
+* **DeepSeek:** Utilizado específicamente para el diseño del frontend, ayudándome a estructurar los componentes visuales con Tailwind CSS para lograr una interfaz moderna.
 
-* [cite_start]**Arquitectura de Software:** Se utilizó la IA para proponer una estructura de carpetas profesional en FastAPI siguiendo el patrón de diseño de esquemas, rutas y servicios[cite: 61, 62, 63, 64].
-* [cite_start]**Modelado de Datos (Pydantic):** La IA asistió en la creación de validaciones robustas para los modelos de `Student` y `Exam`, asegurando que las notas estén en el rango de 0 a 20 y que los campos obligatorios cumplan con los requisitos mínimos[cite: 29, 30].
-* [cite_start]**Visualización de Datos:** Se solicitó apoyo para la configuración técnica de la librería **Recharts** en el frontend, específicamente para implementar gráficos de Radar y Tendencia que permitan visualizar el desempeño del alumno[cite: 56].
-* [cite_start]**Depuración (Debugging):** La IA fue fundamental para identificar errores de lógica y conectividad, como el manejo de estados nulos al sincronizar el frontend con el backend.
+## 2. Áreas de Aplicación Específica
+* **Modelado y Validación:** Con ayuda de la IA, definí esquemas de Pydantic utilizando `Field(ge=0, le=20)`. Esto garantiza que el backend rechace automáticamente cualquier nota fuera del rango permitido antes de procesarla.
+* **Visualización de Datos:** Implementé gráficos complejos (Radar, Barras y Líneas) mediante la configuración técnica de **Recharts**, permitiendo una lectura clara del rendimiento académico.
+* **Depuración de Estado:** Logré resolver problemas críticos de persistencia en el frontend, como la pérdida de datos al presionar F5, implementando una lógica de recuperación en los Hooks de React.
 
-## [cite_start]2. Trabajo realizado manualmente [cite: 49]
+## 3. Decisiones y Trabajo Manual
+A pesar del apoyo de la IA, las decisiones arquitectónicas fueron manuales:
+* **Estructura del Proyecto:** La organización de carpetas y la separación de responsabilidades fueron definidas por mi persona.
+* **Experiencia de Usuario (UX):** La navegación, el flujo de los formularios y los modales de confirmación fueron diseñados para ser intuitivos.
+* **Gestión de Errores:** Personalicé las respuestas de error del servidor para que el usuario reciba mensajes claros cuando algo falla.
 
-* **Lógica de Persistencia en Frontend:** Implementación de la lógica para recargar la lista de estudiantes si el estado global se reinicia (F5), garantizando que la aplicación no se bloquee al perder el estado de Zustand.
-* [cite_start]**Personalización de Interfaz (Tailwind):** Diseño estético adaptado a la identidad visual de **ZTRACK** y optimización de componentes para asegurar una experiencia fluida en dispositivos móviles[cite: 40, 43].
-* [cite_start]**Integración con Axios:** Configuración manual de los servicios de API, interceptores y el manejo de estados de carga (`isLoading`) para mejorar la retroalimentación al usuario[cite: 41, 44].
-
-## [cite_start]3. Errores o limitaciones de la IA detectados [cite: 50]
-
-* **Contexto del Backend:** La IA sugirió utilizar métodos de consulta individual (`GET /api/students/{id}`) que no estaban habilitados inicialmente en el servidor, lo que resultó en errores de tipo `405 Method Not Allowed`.
-* **Sincronía de Hooks:** En el desarrollo con React, la IA omitió en ocasiones dependencias necesarias en el array de `useEffect`, lo que requirió correcciones manuales para evitar advertencias del linter y bucles infinitos.
-
-## [cite_start]4. Mejora implementada sugerida por la IA [cite: 51]
-
-* **Validación de tipos en Pydantic:** Se implementó el uso de `Field(..., ge=0, le=20)` en el esquema de exámenes. [cite_start]Esta validación asegura que el backend rechace cualquier nota fuera del rango académico permitido antes de que llegue a la base de datos, cumpliendo con los requisitos de manejo de excepciones y validaciones estándar[cite: 27, 29].
+## 4. Reflexión sobre el proceso
+El uso de IA me permitió reducir el tiempo de escritura de código repetitivo (boilerplate), permitiéndome enfocarme en la calidad de la arquitectura.
 
 ---
-**Desarrollado por:** Arturo Becerra  
-[cite_start]**Postulación:** Programador Junior - ZGROUP [cite: 2]
+**Postulante:** Arturo Becerra  
+**Proyecto:** ZTRACK para ZGROUP
